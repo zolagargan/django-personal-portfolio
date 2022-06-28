@@ -1,0 +1,29 @@
+{% extends 'portfolio/base.html' %}
+
+{% block content %}
+<div class="text-center">
+    <h1>My Catfolio
+        <small class="text-muted">is watching you</small>
+    </h1>
+    {% load static %}
+    <img src="{% static 'portfolio/wc.jpg' %}" height = "250">
+    <br>
+    
+    <div class="row row-cols-1 row-cols-md-6 g-4">
+        {% for project in projects %}
+        <div clas="col">
+            <div class="card border-light" style="width: 15rem;">
+                <img src="{{ project.image.url }}" class="card-img-top" height="160">
+                <div class="card-body">
+                <h2 class="card-title">{{ project.title }}</h2>
+                <p class="card-text">{{ project.description }}</p>
+                {% if project.url %}
+                    <a href="{{ project.url }}"> Link </a>
+                {% endif %}
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}
